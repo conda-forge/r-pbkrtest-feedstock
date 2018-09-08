@@ -1,5 +1,4 @@
 {% set version = '0.4-7' %}
-
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
 
@@ -10,12 +9,13 @@ package:
 source:
   fn: pbkrtest_{{ version }}.tar.gz
   url:
-    - https://cran.r-project.org/src/contrib/pbkrtest_{{ version }}.tar.gz
-    - https://cran.r-project.org/src/contrib/Archive/pbkrtest/pbkrtest_{{ version }}.tar.gz
+    - {{ cran_mirror }}/src/contrib/pbkrtest_{{ version }}.tar.gz
+    - {{ cran_mirror }}/src/contrib/Archive/pbkrtest/pbkrtest_{{ version }}.tar.gz
   sha256: 5cbb03ad2b2468720a5a610a0ebda48ac08119a34fca77810a85f554225c23ea
 
 build:
-  number: 0
+  merge_build_host: True  # [win]
+  number: 1
   skip: true  # [win32]
   rpaths:
     - lib/R/lib/
@@ -23,6 +23,8 @@ build:
 
 requirements:
   build:
+    - {{posix}}zip               # [win]
+  host:
     - r-base
     - r-mass
     - r-matrix >=1.2.3
@@ -35,7 +37,7 @@ requirements:
 
 test:
   commands:
-    - $R -e "library('pbkrtest')"  # [not win]
+    - $R -e "library('pbkrtest')"           # [not win]
     - "\"%R%\" -e \"library('pbkrtest')\""  # [win]
 
 about:
@@ -46,8 +48,14 @@ about:
     Kenward Roger modification of F-tests for linear mixed effects models and a parametric
     bootstrap test for generalized linear mixed models.
   license_family: GPL3
+  license_file: '{{ environ["PREFIX"] }}/lib/R/share/licenses/GPL-3'  # [unix]
+  license_file: '{{ environ["PREFIX"] }}\R\share\licenses\GPL-3'  # [win]
 
 extra:
   recipe-maintainers:
     - johanneskoester
     - bgruening
+    - daler
+    - jdblischak
+    - cbrueffer
+    - dbast
