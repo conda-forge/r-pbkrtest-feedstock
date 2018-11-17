@@ -14,9 +14,9 @@ source:
   sha256: 5cbb03ad2b2468720a5a610a0ebda48ac08119a34fca77810a85f554225c23ea
 
 build:
+  noarch: generic
   merge_build_host: True  # [win]
-  number: 1
-  skip: true  # [win32]
+  number: 1001
   rpaths:
     - lib/R/lib/
     - lib/
@@ -48,8 +48,7 @@ about:
     Kenward Roger modification of F-tests for linear mixed effects models and a parametric
     bootstrap test for generalized linear mixed models.
   license_family: GPL3
-  license_file: '{{ environ["PREFIX"] }}/lib/R/share/licenses/GPL-3'  # [unix]
-  license_file: '{{ environ["PREFIX"] }}\R\share\licenses\GPL-3'  # [win]
+  license_file: '{{ environ["PREFIX"] }}/lib/R/share/licenses/GPL-3'
 
 extra:
   recipe-maintainers:
