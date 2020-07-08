@@ -1,4 +1,4 @@
-{% set version = '0.4-7' %}
+{% set version = '0.4-8.6' %}
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
 
@@ -7,16 +7,15 @@ package:
   version: {{ version|replace("-", "_") }}
 
 source:
-  fn: pbkrtest_{{ version }}.tar.gz
   url:
     - {{ cran_mirror }}/src/contrib/pbkrtest_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/pbkrtest/pbkrtest_{{ version }}.tar.gz
-  sha256: 5cbb03ad2b2468720a5a610a0ebda48ac08119a34fca77810a85f554225c23ea
+  sha256: 5f863b167968d97ea504f3fffabc1b4c922e244d4e194e013229960d3384bd68
 
 build:
-  noarch: generic
   merge_build_host: True  # [win]
-  number: 1003
+  number: 0
+  noarch: generic
   rpaths:
     - lib/R/lib/
     - lib/
@@ -29,11 +28,13 @@ requirements:
     - r-mass
     - r-matrix >=1.2.3
     - r-lme4 >=1.1.10
+    - r-magrittr
   run:
     - r-base
     - r-mass
     - r-matrix >=1.2.3
     - r-lme4 >=1.1.10
+    - r-magrittr
 
 test:
   commands:
@@ -42,20 +43,34 @@ test:
 
 about:
   home: http://people.math.aau.dk/~sorenh/software/pbkrtest/
-  license: GPL (>= 2)
+  license: GPL-2.0-or-later
   summary: Test in mixed effects models. Attention is on mixed effects models as implemented
     in the 'lme4' package. This package implements a parametric bootstrap test and a
     Kenward Roger modification of F-tests for linear mixed effects models and a parametric
     bootstrap test for generalized linear mixed models.
-  license_family: GPL3
-  license_file: '{{ environ["PREFIX"] }}/lib/R/share/licenses/GPL-3'
+  license_family: GPL2
+  license_file:
+    - '{{ environ["PREFIX"] }}/lib/R/share/licenses/GPL-2'
 
 extra:
   recipe-maintainers:
     - conda-forge/r
-    - johanneskoester
-    - bgruening
-    - daler
-    - jdblischak
-    - cbrueffer
-    - dbast
+
+# Package: pbkrtest
+# Version: 0.4-8.6
+# Title: Parametric Bootstrap and Kenward Roger Based Methods for Mixed Model Comparison
+# Author: Ulrich Halekoh <uhalekoh@health.sdu.dk> Sren Hjsgaard <sorenh@math.aau.dk>
+# Maintainer: Sren Hjsgaard <sorenh@math.aau.dk>
+# Description: Test in mixed effects models. Attention is on mixed effects models as implemented in the 'lme4' package. This package implements a parametric bootstrap test and a Kenward Roger modification of F-tests for linear mixed effects models and a parametric bootstrap test for generalized linear mixed models.
+# URL: http://people.math.aau.dk/~sorenh/software/pbkrtest/
+# Depends: R (>= 3.6.0), lme4 (>= 1.1.10)
+# Imports: Matrix (>= 1.2.3), parallel, magrittr, MASS, methods
+# Encoding: UTF-8
+# ZipData: no
+# License: GPL (>= 2)
+# RoxygenNote: 7.0.2
+# LazyData: true
+# NeedsCompilation: no
+# Packaged: 2020-02-20 20:07:18 UTC; sorenh
+# Repository: CRAN
+# Date/Publication: 2020-02-20 21:40:02 UTC
