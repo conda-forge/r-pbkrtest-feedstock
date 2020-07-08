@@ -15,7 +15,7 @@ source:
 build:
   merge_build_host: True  # [win]
   number: 0
-  skip: True  # [r_base == "3.5.1"]
+  noarch: generic
   rpaths:
     - lib/R/lib/
     - lib/
@@ -43,7 +43,7 @@ test:
 
 about:
   home: http://people.math.aau.dk/~sorenh/software/pbkrtest/
-  license: GPL-2
+  license: GPL-2.0-or-later
   summary: Test in mixed effects models. Attention is on mixed effects models as implemented
     in the 'lme4' package. This package implements a parametric bootstrap test and a
     Kenward Roger modification of F-tests for linear mixed effects models and a parametric
