@@ -5,11 +5,9 @@ Home: http://people.math.aau.dk/~sorenh/software/pbkrtest/
 
 Package license: GPL-2.0-or-later
 
-Feedstock license: BSD-3-Clause
+Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/r-pbkrtest-feedstock/blob/master/LICENSE.txt)
 
 Summary: Test in mixed effects models. Attention is on mixed effects models as implemented in the 'lme4' package. This package implements a parametric bootstrap test and a Kenward Roger modification of F-tests for linear mixed effects models and a parametric bootstrap test for generalized linear mixed models.
-
-
 
 Current build status
 ====================
