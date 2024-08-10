@@ -21,25 +21,24 @@ build:
 requirements:
   build:
     - {{ posix }}zip               # [win]
+    - cross-r-base {{ r_base }}    # [build_platform != target_platform]
   host:
     - r-base
     - r-mass
     - r-matrix >=1.2.3
     - r-broom
+    - r-doby
     - r-dplyr
-    - r-knitr
-    - r-lme4 >=1.1.10
-    - r-magrittr
+    - r-lme4 >=1.1.31
     - r-numderiv
   run:
     - r-base
     - r-mass
     - r-matrix >=1.2.3
     - r-broom
+    - r-doby
     - r-dplyr
-    - r-knitr
-    - r-lme4 >=1.1.10
-    - r-magrittr
+    - r-lme4 >=1.1.31
     - r-numderiv
 
 test:
